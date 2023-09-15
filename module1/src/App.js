@@ -20,6 +20,7 @@ const App = () => {
             <p>
                 {a} + {b} = {a + b}
             </p>
+
             <Hello name={friends[0].name} age={friends[0].age}/>
             <Hello name={friends[1].name} age={friends[1].age}/>
             <Hello name={friends[2].name} age={friends[2].age}/>
