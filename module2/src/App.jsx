@@ -3,9 +3,12 @@ import Button from './components/Button.jsx';
 import Display from './components/Display.jsx';
 
 const App = () => {
-    const [ counter, setCounter ] = useState(0);
+    const [ counter, setCounter ] = useState(JSON.parse(localStorage.getItem("counter")));
 
-    const changeCount = (delta) => setCounter(counter + delta);
+    const changeCount = (delta) => {
+        setCounter(counter + delta);
+        localStorage.setItem("counter", JSON.stringify(counter + delta));
+    }
 
     return (
         <>
