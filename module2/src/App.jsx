@@ -1,12 +1,13 @@
 import Button from './components/Button.jsx';
 import Display from './components/Display.jsx';
-import { useLocalStorage } from "./hooks/useLocalStorage.js";
+import { useLocalStorage } from "react-use";
 
 const App = () => {
     const [ counter, setLocalStorage ] = useLocalStorage("counter", 0)
 
+
     const changeCount = (delta) => {
-        setLocalStorage("counter", counter + delta);
+        setLocalStorage(counter + delta);
     }
 
     return (
