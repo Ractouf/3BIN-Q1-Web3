@@ -9,5 +9,4 @@ const Button = ({ changeCount, delta, text }) => {
     );
 }
 
-
 export default Button;
