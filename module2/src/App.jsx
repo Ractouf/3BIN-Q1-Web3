@@ -5,16 +5,14 @@ import Display from './components/Display.jsx';
 const App = () => {
     const [ counter, setCounter ] = useState(0);
 
-    const increaseByOne = () => setCounter(counter + 1);
-    const decreaseByOne = () => setCounter(counter - 1)
-    const setToZero = () => setCounter(0);
+    const changeCount = (delta) => setCounter(counter + delta);
 
     return (
         <>
             <Display counter = {counter}/>
-            <Button handleClick = {increaseByOne} text = "plus"></Button>
-            <Button handleClick = {decreaseByOne} text = "minus"></Button>
-            <Button handleClick = {setToZero} text = "zero"></Button>
+            <Button changeCount = {changeCount} delta = {1} text = "plus"/>
+            <Button changeCount = {changeCount} delta = {-1} text = "minus"/>
+            <Button changeCount = {changeCount} delta = {- counter} text = "zero"/>
         </>
     );
 }
