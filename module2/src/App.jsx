@@ -5,7 +5,6 @@ import { useLocalStorage } from "react-use";
 const App = () => {
     const [ counter, setLocalStorage ] = useLocalStorage("counter", 0)
 
-
     const changeCount = (delta) => setLocalStorage(counter + delta);
 
     return (
