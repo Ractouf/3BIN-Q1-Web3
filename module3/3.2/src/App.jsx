@@ -21,6 +21,16 @@ const App = () => {
         ]
     }
 
+    const array1 = [1, 2, 3, 4];
+
+    const sumWithInitial = array1.reduce((accumulator, currentValue) => {
+        console.log(accumulator)
+        console.log(currentValue)
+        return accumulator + currentValue
+    });
+
+    console.log(sumWithInitial);
+
     return (
         <>
             <Course course = {course} />
@@ -32,7 +42,7 @@ const Course = ({course}) => {
     return (
         <>
             <Header title = {course.name}/>
-            <Content content = {course.parts}/>
+            <Content parts = {course.parts}/>
         </>
     )
 }
@@ -41,10 +51,10 @@ const Header = ({title}) => {
     return <h1>{title}</h1>
 }
 
-const Content = ({content}) => {
+const Content = ({parts}) => {
     return (
         <>
-            {content.map(cont => <Part key = {cont.id} part = {cont}/>)}
+            {parts.map(cont => <Part key = {cont.id} part = {cont}/>)}
         </>
     )
 }
