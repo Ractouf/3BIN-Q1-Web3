@@ -10,17 +10,17 @@ const App = () => {
 
     function handleGoodClick() {
         setGood(good + 1);
-        setTotal(good + neutral + bad + 1);
+        setTotal(total + 1);
     }
 
     function handleNeutralClick() {
         setNeutral(neutral + 1);
-        setTotal(good + neutral + bad + 1);
+        setTotal(total + 1);
     }
 
     function handleBadClick() {
         setBad(bad + 1);
-        setTotal(good + neutral + bad + 1);
+        setTotal(total + 1);
     }
 
     const intervalID = setInterval(() => {
@@ -32,7 +32,6 @@ const App = () => {
         setLoading(false);
         clearInterval(intervalID);
     }, 3000);
-
 
     if (loading) return <Loading text = {loadingVisual}/>
 

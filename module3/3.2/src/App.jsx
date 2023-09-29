@@ -21,19 +21,13 @@ const App = () => {
         ]
     }
 
-    const array1 = [1, 2, 3, 4];
-
-    const sumWithInitial = array1.reduce((accumulator, currentValue) => {
-        console.log(accumulator)
-        console.log(currentValue)
-        return accumulator + currentValue
-    });
-
-    console.log(sumWithInitial);
+    const exercises = course.parts.map((part) => part.exercises)
+    const sum  = exercises.reduce((a, c) => a + c);
 
     return (
         <>
             <Course course = {course} />
+            <p>Total of {sum} exercises</p>
         </>
     )
 }
