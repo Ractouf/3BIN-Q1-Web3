@@ -5,6 +5,8 @@ const App = () => {
     const [neutral, setNeutral] = useState(0);
     const [bad, setBad] = useState(0);
     const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [loadingVisual, setLoadingVisual] = useState("Loading");
 
     function handleGoodClick() {
         setGood(good + 1);
@@ -21,6 +23,19 @@ const App = () => {
         setTotal(good + neutral + bad + 1);
     }
 
+    const intervalID = setInterval(() => {
+        let newVisual = loadingVisual + '.';
+        setLoadingVisual(newVisual);
+    }, 750);
+
+    setTimeout(() => {
+        setLoading(false);
+        clearInterval(intervalID);
+    }, 3000);
+
+
+    if (loading) return <Loading text = {loadingVisual}/>
+
     return (
         <>
             <h2>Give feedback</h2>
@@ -31,6 +46,19 @@ const App = () => {
 
             <Statistics good={good} neutral={neutral} bad={bad} total={total}/>
         </>
+    );
+}
+
+const Loading = ({text}) => {
+    return <h1>{text}</h1>
+}
+
+const Button = ({handler, text}) => {
+
+    return (
+        <button onClick = {handler}>
+            {text}
+        </button>
     );
 }
 
@@ -58,15 +86,6 @@ const Statistics = ({good, neutral, bad, total}) => {
 
 const StatisticLine = ({value, text}) => {
     return <td>{text}: {value}</td>
-}
-
-const Button = ({handler, text}) => {
-
-    return (
-        <button onClick = {handler}>
-            {text}
-        </button>
-    );
 }
 
 export default App;
