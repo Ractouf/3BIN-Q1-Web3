@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 const App = () => {
     const [persons, setPersons] = useState([
-        { name: 'Arto Hellas', phone: '+32495 20 41 90'}
+        { name: 'Arto Hellos', phone: '+32495 20 41 90'},
+        { name: 'Damien Lapin ski', phone: '+32454 32 10'},
+        { name: 'Guillherme LaSal', phone: '+32467 89 11'},
     ]);
     const [newName, setNewName] = useState('');
     const [newPhone, setNewPhone] = useState('');
@@ -30,7 +32,9 @@ const App = () => {
         setNewPhone(e.target.value);
     }
     function handleFilter(e) {
-        console.log(persons.find(({ name }) => name.toLowerCase().includes(e.target.value.toLowerCase())));
+        const foundPersons = persons.filter(({ name }) => name.toLowerCase().includes(e.target.value.toLowerCase()));
+
+        setFilteredPersons(foundPersons);
     }
 
     return (
