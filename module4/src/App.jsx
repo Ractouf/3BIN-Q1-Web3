@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import person from "./services/person.js";
 
 const App = () => {
-    const [persons, setPersons] = useState([
-        { name: 'Arto Hellos', phone: '+32495 20 41 90'},
-        { name: 'Damien Lapin ski', phone: '+32454 32 10'},
-        { name: 'Guillherme LaSal', phone: '+32467 89 11'},
-    ]);
+    const [persons, setPersons] = useState([]);
     const [newName, setNewName] = useState('');
     const [newPhone, setNewPhone] = useState('');
-    const [filteredPersons, setFilteredPersons] = useState(persons);
+    const [filteredPersons, setFilteredPersons] = useState([]);
+
+    useEffect(() => {
+        person.getAll().then(initialPersons => {
+            setPersons(initialPersons);
+            setFilteredPersons(initialPersons);
+        })
+    }, []);
 
     function addName(e) {
         e.preventDefault();
@@ -21,8 +25,11 @@ const App = () => {
             return;
         }
 
-        const nameObj = { name: newName, phone: newPhone };
-        setPersons(persons.concat(nameObj));
+        const nameObj = { name: newName, phone: newPhone, id: persons.length + 1 };
+        person.create(nameObj).then(returnedPerson => {
+            setPersons(persons.concat(returnedPerson));
+            setFilteredPersons(persons.concat(returnedPerson));
+        })
     }
 
     function handleNewName(e) {
