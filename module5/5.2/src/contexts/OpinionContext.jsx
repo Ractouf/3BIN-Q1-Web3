@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-const Context = React.createContext(null)
+const OpinionContext = React.createContext(null)
 
-
-const ProviderWrapper = (props) => {
+const OpinionProviderWrapper = (props) => {
 
     const defaultOpinions = [
         {
@@ -59,12 +58,12 @@ const ProviderWrapper = (props) => {
         voteOpinion
     }
 
-    return <Context.Provider value={exposedValue}>
+    return <OpinionContext.Provider value={exposedValue}>
         { props.children }
-    </Context.Provider>
+    </OpinionContext.Provider>
 }
 
 export {
-    Context,
-    ProviderWrapper,
+    OpinionContext,
+    OpinionProviderWrapper,
 }
