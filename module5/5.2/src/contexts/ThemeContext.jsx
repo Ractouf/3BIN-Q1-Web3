@@ -17,8 +17,8 @@ const ThemeProviderWrapper = (props) => {
     }
 
     function setDarkTheme() {
-        setBackgroundColor("black");
-        setPrimaryTextColor("white");
+        setBackgroundColor("#212126");
+        setPrimaryTextColor("#d0dae1");
         setSecondaryTextColor("gray");
         setLinkColor("red");
     }
