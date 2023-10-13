@@ -18,7 +18,7 @@ const App = () => {
 }
 
 const GoodButton = () => {
-    const { good, increaseGood } = useContext(CounterContext)
+    const { good, increaseGood } = useContext(CounterContext);
 
     return (
         <>
@@ -29,7 +29,7 @@ const GoodButton = () => {
 }
 
 const NeutralButton = () => {
-    const { neutral, increaseNeutral } = useContext(CounterContext)
+    const { neutral, increaseNeutral } = useContext(CounterContext);
 
     return (
         <>
@@ -40,7 +40,7 @@ const NeutralButton = () => {
 }
 
 const BadButton = () => {
-    const { bad, increaseBad } = useContext(CounterContext)
+    const { bad, increaseBad } = useContext(CounterContext);
 
     return (
         <>
@@ -51,7 +51,7 @@ const BadButton = () => {
 }
 
 const ResetButton = () => {
-    const { resetAll } = useContext(CounterContext)
+    const { resetAll } = useContext(CounterContext);
 
     return (
         <>
