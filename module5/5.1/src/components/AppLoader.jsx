@@ -1,5 +1,5 @@
-import { ProviderWrapper as CounterProviderWrapper } from "contexts/CounterContext.jsx"
-import App from "components/App.jsx";
+import { ProviderWrapper as CounterProviderWrapper } from "contexts/CounterContext"
+import App from "components/App";
 
 const AppLoader= () => {
     return (

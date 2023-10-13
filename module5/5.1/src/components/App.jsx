@@ -1,5 +1,5 @@
 import 'components/App.css';
-import { Context as CounterContext } from "contexts/CounterContext.jsx";
+import { Context as CounterContext } from "contexts/CounterContext";
 import { useContext } from "react";
 
 const App = () => {
