@@ -1,0 +1,14 @@
+### Get all phonebooks
+GET {{host}}/phonebooks
+
+### Create a phonebook
+POST {{host}}/phonebooks
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "number": "12-34-56789012BB"
+}
+
+### Delete a phonebook
+DELETE {{host}}/phonebooks/653258e7d019b6c7442380e1
