@@ -1,45 +1,50 @@
-import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { Button, Input, Space } from 'antd';
+import { Form, Button, Input, Space } from 'antd';
 
-const CreateNew = (props) => {
-    const [content, setContent] = useState('');
-    const [author, setAuthor] = useState('');
-    const [info, setInfo] = useState('');
+const CreateNew = ({addNew}) => {
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.addNew({
-            content,
-            author,
-            info,
-            votes: 0
-        });
+    const handleSubmit = (anecdote) => {
+        addNew(anecdote);
         navigate('/');
     }
 
     return (
         <div>
             <h2>create a new anecdote</h2>
-            <form onSubmit = {handleSubmit}>
+            <Form onFinish = {handleSubmit}>
                 <Space direction = "vertical">
-                    <Space.Compact>
-                        <Input placeholder = 'content' value = {content} onChange={(e) => setContent(e.target.value)} />
-                    </Space.Compact>
+                    <Form.Item
+                        label = 'content'
+                        name = 'content'
+                        rules = {[
+                            {
+                                required: true,
+                                message: 'Please input a content!',
+                            },
+                        ]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label = 'author'
+                        name = 'author'
+                        rules = {[
+                            {
+                                required: true,
+                                message: 'Please input an author!',
+                            },
+                        ]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label = 'info'
+                        name = 'info'>
+                        <Input />
+                    </Form.Item>
 
-                    <Space.Compact>
-                        <Input placeholder = 'author' value = {author} onChange={(e) => setAuthor(e.target.value)} />
-                    </Space.Compact>
-
-                    <Space.Compact>
-                        <Input placeholder = 'info' value = {info} onChange={(e)=> setInfo(e.target.value)} />
-                    </Space.Compact>
-
-                    <Button type = "primary">create</Button>
+                    <Button type = "primary" htmlType = "submit">Create</Button>
                 </Space>
-            </form>
+            </Form>
         </div>
     );
 }

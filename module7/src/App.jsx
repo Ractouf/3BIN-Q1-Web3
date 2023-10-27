@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useMatch } from 'react-router-dom'
-import Menu from "components/Menu"
+import { Layout, message } from "antd";
+import { Header } from "antd/es/layout/layout.js";
 import AnecdoteList from "components/AnecdoteList"
 import About from "components/About"
 import CreateNew from "components/CreateNew"
 import Footer from "components/Footer"
 import Anecdote from "components/Anecdote";
 import Notification from "components/Notification";
+import Menu from "components/Menu";
 
 const App = () => {
     const [anecdotes, setAnecdotes] = useState([
@@ -26,18 +28,13 @@ const App = () => {
         }
     ]);
 
-    const [notification, setNotification] = useState('');
-
-    useEffect(() => {
-        if (notification !== '')
-            setTimeout(() => setNotification(''), 5000);
-    }, [notification]);
+    const [messageApi, contextHolder] = message.useMessage();
 
     const addNew = (anecdote) => {
         anecdote.id = Math.round(Math.random() * 10000);
         setAnecdotes(anecdotes.concat(anecdote));
 
-        setNotification(`A new anecdote was added by ${anecdote.author}!`);
+        messageApi.info(`A new anecdote was added by ${anecdote.author}!`);
     }
 
     const match = useMatch('/anecdotes/:id');
@@ -45,11 +42,17 @@ const App = () => {
 
     return (
         <>
-            <h1>Software anecdotes</h1>
-
-            <Menu />
-
-            {notification && <Notification notification = {notification}/>}
+            {contextHolder}
+            <Layout>
+                <Header style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'wheat'
+                }}>
+                    <h1 style={{margin: "0 10px"}}>Software anecdotes</h1>
+                    <Menu />
+                </Header>
+            </Layout>
 
             <Routes>
                 <Route path = "/" element = {<AnecdoteList anecdotes = {anecdotes} />} />
