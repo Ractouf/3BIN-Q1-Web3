@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, useMatch } from 'react-router-dom'
 import Menu from "components/Menu"
 import AnecdoteList from "components/AnecdoteList"
 import About from "components/About"
 import CreateNew from "components/CreateNew"
 import Footer from "components/Footer"
-import Anecdote from "components/Anecdote.jsx";
+import Anecdote from "components/Anecdote";
+import Notification from "components/Notification";
 
 const App = () => {
     const [anecdotes, setAnecdotes] = useState([
@@ -27,12 +28,16 @@ const App = () => {
 
     const [notification, setNotification] = useState('');
 
+    useEffect(() => {
+        if (notification !== '')
+            setTimeout(() => setNotification(''), 5000);
+    }, [notification]);
+
     const addNew = (anecdote) => {
         anecdote.id = Math.round(Math.random() * 10000);
         setAnecdotes(anecdotes.concat(anecdote));
 
         setNotification(`A new anecdote was added by ${anecdote.author}!`);
-        setTimeout(() => setNotification(''), 5000);
     }
 
     const match = useMatch('/anecdotes/:id');
@@ -44,7 +49,7 @@ const App = () => {
 
             <Menu />
 
-            <h3 style={{color: "red"}}>{notification}</h3>
+            {notification && <Notification notification = {notification}/>}
 
             <Routes>
                 <Route path = "/" element = {<AnecdoteList anecdotes = {anecdotes} />} />

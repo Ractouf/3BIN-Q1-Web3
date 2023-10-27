@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
+import { Button, Input, Space } from 'antd';
 
 const CreateNew = (props) => {
     const [content, setContent] = useState('');
@@ -22,20 +23,22 @@ const CreateNew = (props) => {
     return (
         <div>
             <h2>create a new anecdote</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    content
-                    <input name = 'content' value = {content} onChange={(e) => setContent(e.target.value)} />
-                </div>
-                <div>
-                    author
-                    <input name = 'author' value = {author} onChange={(e) => setAuthor(e.target.value)} />
-                </div>
-                <div>
-                    url for more info
-                    <input name = 'info' value = {info} onChange={(e)=> setInfo(e.target.value)} />
-                </div>
-                <button>create</button>
+            <form onSubmit = {handleSubmit}>
+                <Space direction = "vertical">
+                    <Space.Compact>
+                        <Input placeholder = 'content' value = {content} onChange={(e) => setContent(e.target.value)} />
+                    </Space.Compact>
+
+                    <Space.Compact>
+                        <Input placeholder = 'author' value = {author} onChange={(e) => setAuthor(e.target.value)} />
+                    </Space.Compact>
+
+                    <Space.Compact>
+                        <Input placeholder = 'info' value = {info} onChange={(e)=> setInfo(e.target.value)} />
+                    </Space.Compact>
+
+                    <Button type = "primary">create</Button>
+                </Space>
             </form>
         </div>
     );
