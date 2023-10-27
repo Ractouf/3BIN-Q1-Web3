@@ -46,7 +46,8 @@ const errorHandler = (error, req, res, next) => {
 app.use(errorHandler)
 
 app.delete("/phonebooks/:id", async (req, res, next) => {
-    await Phonebook.findByIdAndRemove(req.params.id).catch(error => errorHandler(error, req, res, next));
+    await Phonebook.findByIdAndRemove(req.params.id).catch(error => errorHandler(error, req, res, next))
+
     res.status(204).end();
 });
 
