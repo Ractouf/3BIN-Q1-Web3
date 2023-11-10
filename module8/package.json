@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "nodemon library-backend.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.9.5",
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
