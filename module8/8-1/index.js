@@ -1,5 +1,6 @@
 const { ApolloServer } = require('@apollo/server')
 const { startStandaloneServer } = require('@apollo/server/standalone')
+const { v1: uuid } = require('uuid')
 
 let authors = [
     {
@@ -101,9 +102,21 @@ const typeDefs = `
     }
     type Query {
         bookCount: Int!
-        allBooks: [Book!]!
+        allBooks(author: String, genre: String): [Book!]!
         authorCount: Int!
         allAuthors: [Author!]!
+    }
+    type Mutation {
+        addBook(
+            title: String!
+            published: Int!
+            author: String!
+            genres: [String!]!
+        ): Book
+        editAuthor(
+            name: String!
+            setBornTo: Int!
+        ): Author
     }
 `;
 
@@ -112,10 +125,45 @@ const resolvers = {
         bookCount: (root) => books.filter(book => book.author === root.name).length
     },
     Query: {
-        bookCount: (root) => books.length,
+        bookCount: () => books.length,
         authorCount: () => authors.length,
-        allBooks: () => books,
+        allBooks: (root, args) => {
+            if (!args.author && !args.genre) return books;
+
+            if (args.author && args.genre) {
+                return books.filter(book => book.author === args.author && book.genres.includes(args.genre));
+            }
+
+            if (args.author) {
+                return books.filter(book => book.author === args.author);
+            }
+
+            if (args.genre) {
+                return books.filter(book => book.genres.includes(args.genre));
+            }
+        },
         allAuthors: () => authors
+    },
+    Mutation: {
+        addBook: (root, args) => {
+            if (!authors.includes(args.author))
+                authors = authors.concat({ name: args.author, id: uuid() })
+
+            const book = { ...args, id: uuid() };
+            books = books.concat(book);
+            return book;
+        },
+        editAuthor: (root, args) => {
+            const foundAuthor = authors.find(author => author.name === args.name);
+
+            if (foundAuthor === null) return null;
+
+            authors = authors.filter(author => author.id !== foundAuthor.id);
+            foundAuthor.born = args.setBornTo;
+
+            authors = authors.concat(foundAuthor);
+            return foundAuthor;
+        }
     }
 }
 
