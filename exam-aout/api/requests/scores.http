@@ -1,0 +1,12 @@
+### Get all scores
+GET localhost:3001/scores
+
+### Create one score
+POST localhost:3001/scores
+Content-Type: application/json
+
+{
+    "username": "Ractouf",
+    "score": 1,
+    "joke": "6461f476d9a9da9dbeade37e"
+}

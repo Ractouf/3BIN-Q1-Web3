@@ -1,0 +1,18 @@
+### Get all jokes
+GET localhost:3001/jokes
+
+### Get one joke
+GET localhost:3001/jokes/6461f476d9a9da9dbeade37e
+
+### Create a joke
+POST localhost:3001/jokes
+Content-Type: application/json
+
+{
+    "question": "What do you call a cow with no legs?",
+    "answer": "Ground beef.",
+    "category": "not fun"
+}
+
+### Delete a joke
+DELETE localhost:3001/jokes/6461f476d9a9da9dbeade37e
