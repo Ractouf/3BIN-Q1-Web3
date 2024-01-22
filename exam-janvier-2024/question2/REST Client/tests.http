@@ -1,0 +1,47 @@
+### Get all jokes
+GET localhost:3001/api/jokes
+
+### Add a comment
+PATCH localhost:3001/api/jokes/6461f476d9a9da9dbeade38e
+Content-Type: application/json
+
+{
+  "username": "Ractouf",
+  "comment": "eheheheh"
+}
+
+### Add a too short comment
+PATCH localhost:3001/api/jokes/6461f476d9a9da9dbeade38a
+Content-Type: application/json
+
+{
+  "username": "Ractouf",
+  "comment": "12345"
+}
+
+### Add a comment with a too short username
+PATCH localhost:3001/api/jokes/6461f476d9a9da9dbeade38a
+Content-Type: application/json
+
+{
+  "username": "123",
+  "comment": "eheheheh"
+}
+
+### Add a comment to unexisting joke
+PATCH localhost:3001/api/jokes/6461f476d9a9da9dbeade38a
+Content-Type: application/json
+
+{
+  "username": "Ractouf",
+  "comment": "eheheheh"
+}
+
+### Already commented joke
+PATCH localhost:3001/api/jokes/6461f476d9a9da9dbeade38e
+Content-Type: application/json
+
+{
+  "username": "Ractouf",
+  "comment": "eheheheh"
+}
